@@ -62,6 +62,12 @@ module Github
     end
     alias_method :find, :get
 
+    def get_reviews(*args)
+      arguments(args, required: [:user, :repo, :number])
+
+      get_request("/repos/#{arguments.user}/#{arguments.repo}/pulls/#{arguments.number}/reviews", arguments.params)
+    end      
+  
     # Create a pull request comment
     #
     # @param [Hash] params
